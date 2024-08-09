@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Board {
 
+    boolean isClosed;
     int width;
     int height;
     Cell[][] cells;
@@ -31,7 +32,7 @@ public class Board {
             new Point(1, -1), new Point(1, 0), new Point(1, 1)
     };
 
-    public int getNeighbours(Cell cell){
+    public int getNeighboursCount(Cell cell){
         int neighbourCount = 0;
         int x = cell.x;
         int y = cell.y;
@@ -64,7 +65,7 @@ public class Board {
         Cell[][] newTurn = createNewTurn();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                int neighbours = getNeighbours(cells[x][y]);
+                int neighbours = getNeighboursCount(cells[x][y]);
                 newTurn[x][y].iterate(neighbours);
             }
         }

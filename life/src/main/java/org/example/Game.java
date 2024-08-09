@@ -1,15 +1,20 @@
 package org.example;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Game {
-    public Board board;
-    public Game(Board board){
-        this.board=board;
+    public BoardList board;
+
+    public Game(BoardList board) {
+        this.board = board;
     }
-    public void Play(){
+
+    public void Play() {
         board.print();
         while (true) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
@@ -22,16 +27,16 @@ public class Game {
     public static void main(String[] args) {
         int width = 10;
         int height = 10;
-        Board board = new Board(width, height);
-        Cell[] initCells = {
-                new Cell(3, 6, true),
-                new Cell(4, 5, true),
-                new Cell(5, 4, true),
-                new Cell(6, 3, true),
-                new Cell(7, 2, true),
-                new Cell(6, 5, true)
-        };
-        board.initialize(initCells);
+        BoardList board = new BoardList();
+        List<Cell> initialCells = new LinkedList<>();
+
+
+        initialCells.add(new Cell(4, 3, true));
+        initialCells.add(new Cell(5, 3, true));
+        initialCells.add(new Cell(6, 4, true));
+        initialCells.add(new Cell(6, 3, true));
+
+        board.initialize(initialCells, width, height);
         Game game = new Game(board);
         game.Play();
     }
